@@ -11,8 +11,8 @@ export class Transaction_Service {
     value: number,
     description: string
   ) {
-    await wallet.exists(walletId);
     try {
+      await wallet.exists(walletId);
       const res = await prisma.transaction.create({
         data: {
           walletId,

@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+PONTUAÇÕES
+R$ +1,00 => 0.05pt ENTRADAS
+R$ -1,00 => -0,065pt SAÍDAS
 
-## Getting Started
 
-First, run the development server:
+O objetivo é incentivar a sempre guardar.
+O motivo de a pontuação por saídas ser maior do que a de entrada, é mostrar que é melhor guardar do que ganhar.
+Mas até que ponto isto é verdade ??
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+METAS
+2,5 PONTO => 1° MEDALHA => R$ 50,00 => ACESSO A FILTROS DE MOVIMENTAÇÃO
+5 PONTOS => 2° MEDALHA => R$ 100,00
+6,25 => 3° MEDALHA =>  R$ 125,00 => ACESSO A AGENDAMENTO DE CONTAS A PAGAR E A RECEBER
+8,75 PONTOS => 4° MEDALHA => R$ 175,00
+12,5 PONTOS => 5° MEDALHA => R$ 250,00 => ACESSO A GRÁFICOS DE ANÁLISE
+15 PONTOS => 6° MEDALHA => R$ 300,00
+26,25 PONTOS =>  7° MEDALHA => R$ 525,00 
+35 PONTOS => 8° MEDALHA => R$ 700,00
+42,5 PONTOS = 9° MEDALHA => R$ 850,00 
+50 PONTOS = 10° MEDALHA => R$ 1.000,00 
+85 PONTOS = 11° MEDALHA => R$ 1.700,00
+125 PONTOS => 12° MEDALHA => 2.500,00 
+250 PONTOS => 13° MEDALHA => 5.000,00
+375 PONTOS => 14° MEDALHA => R$ 7.500,00
+500 PONTOS => 15° MEDALHA => R$ 10.000,00

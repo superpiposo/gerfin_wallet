@@ -1,12 +1,15 @@
 import { Wallet } from "./wallet";
 import { prismaClientSingleton } from "../db";
+import { User_Service } from "../user/User.service";
 
 const prisma = prismaClientSingleton();
+
+const user_service = new User_Service();
 
 export class Wallet_Service {
   async getOne(userId: number) {
     try {
-      await this.exists(userId);
+      await user_service.exists(userId);
       const res = await prisma.wallet.findUnique({
         where: {
           userId,
@@ -19,6 +22,7 @@ export class Wallet_Service {
   }
 
   async patch(userId: number, data: Partial<Wallet>) {
+    await user_service.exists(userId);
     try {
       const res = await prisma.wallet.update({
         where: {
@@ -35,11 +39,7 @@ export class Wallet_Service {
 
   async newIncome(id: number, income: number) {
     try {
-      const wallet = await prisma.wallet.findUnique({
-        where: {
-          id,
-        },
-      });
+      const wallet = await this.exists(id);
       const res = await prisma.wallet.update({
         where: {
           id,
@@ -56,11 +56,7 @@ export class Wallet_Service {
 
   async newOutcome(id: number, outcome: number) {
     try {
-      const wallet = await prisma.wallet.findUnique({
-        where: {
-          id,
-        },
-      });
+      const wallet = await this.exists(id);
       const res = await prisma.wallet.update({
         where: {
           id,
@@ -84,7 +80,7 @@ export class Wallet_Service {
     if (!res) {
       throw new Error("Carteira não encontrada!");
     } else {
-      return;
+      return res;
     }
   }
 }

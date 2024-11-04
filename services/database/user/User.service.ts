@@ -5,9 +5,8 @@ const prisma = prismaClientSingleton();
 
 export class User_Service {
   async create(user: CreateUser) {
-    await this.isSigned(user.email);
-
     try {
+      await this.isSigned(user.email);
       const res = await prisma.user.create({
         data: {
           nome: user.nome,
@@ -27,9 +26,8 @@ export class User_Service {
     }
   }
   async getOne(id: number) {
-    await this.exists(id);
-
     try {
+      await this.exists(id);
       const res = await prisma.user.findUnique({
         where: {
           id,
@@ -40,10 +38,25 @@ export class User_Service {
       throw error;
     }
   }
-  async patch(id: number, data: Partial<User>) {
-    await this.exists(id);
-
+  async findById(email: string) {
     try {
+      const res = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
+      if (!res) {
+        throw new Error("Email não cadastrado!");
+      } else {
+        return res;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+  async patch(id: number, data: Partial<User>) {
+    try {
+      await this.exists(id);
       const res = await prisma.user.update({
         where: {
           id,
@@ -55,10 +68,10 @@ export class User_Service {
       throw error;
     }
   }
-  async delete(id: number) {
-    await this.exists(id);
 
+  async delete(id: number) {
     try {
+      await this.exists(id);
       const res = await prisma.user.delete({
         where: {
           id,
