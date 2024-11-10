@@ -17,10 +17,10 @@ export default function Button({ text, onClick, color, icon }: buttonProps) {
       type="button"
       onClick={onClick}
       className={`
-            border border-white outline-none
+            outline-none
             hover:scale-105 active:scale-95
             hover:shadow-md active:shadow-none
-            transition-all
+            transition-all dark:border-white dark:border
             ${
               color === "green"
                 ? "hover:bg-green_hover bg-green"

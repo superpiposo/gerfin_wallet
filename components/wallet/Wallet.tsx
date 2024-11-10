@@ -6,6 +6,7 @@ import Form_Container from "../shared/Form_Container";
 import Item from "./parts/item/Item";
 import Controles from "./parts/controles/Controles";
 import Tool_Panel from "./parts/tool_panel/Tool_Panel";
+import Toggle_Theme from "../shared/Toggle_Theme";
 
 const transacoes = [
   {
@@ -37,22 +38,25 @@ const transacoes = [
 export default function Wallet() {
   return (
     <Container>
+      <Toggle_Theme />
       <Form_Container>
         <div className="flex-grow w-5/6 pt-10">
-          <div
-            className="w-full h-full bg-white rounded-md
-          flex flex-col"
-          >
-            {transacoes.map((transacao, index) => (
-              <Item
-                key={index}
-                data={transacao.data}
-                tipo_transacao={transacao.tipo_transacao}
-                motivo={transacao.motivo}
-                valor={transacao.valor}
-              />
-            ))}
-            <div className="flex-grow"></div>
+          <div className="w-full h-full rounded-md border-stone-300 dark:border-stone-700 overflow-hidden relative">
+            <div
+              className="w-full h-full bg-white dark:bg-stone-800 rounded-md border border-stone-300 
+          flex flex-col overflow-y-scroll overflow-x-hidden gap-1 p-2 relative"
+            >
+              {transacoes.map((transacao, index) => (
+                <Item
+                  key={index}
+                  data={transacao.data}
+                  tipo_transacao={transacao.tipo_transacao}
+                  motivo={transacao.motivo}
+                  valor={transacao.valor}
+                />
+              ))}
+              <div className="flex-grow"></div>
+            </div>
             <Tool_Panel />
           </div>
         </div>

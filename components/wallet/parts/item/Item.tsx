@@ -26,13 +26,13 @@ export default function Item({
   return (
     <div
       className={`
-        flex flex-row justify-center text-center landscape:h-8 portrait:h-14 items-center
-            border-b border-dashed font-light text-sm
+        flex flex-row justify-center text-center landscape:h-14 portrait:h-14 items-center
+            font-medium text-sm rounded-md
             ${
               tipo_transacao === "entrada"
-                ? "border-green bg-red_light"
+                ? "bg-gradient-to-t from-green_dark to-green text-white border-green border"
                 : tipo_transacao === "saida"
-                ? "border-red bg-red_light"
+                ? "bg-gradient-to-t from-red_dark to-red text-white border-red border"
                 : ""
             }`}
     >

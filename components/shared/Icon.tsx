@@ -3,6 +3,7 @@
 import React from "react";
 import {
   CiCircleCheck,
+  CiCircleRemove,
   CiInboxIn,
   CiInboxOut,
   CiSearch,
@@ -14,7 +15,7 @@ type iconProps = {
 };
 
 export default function Icon({ type }: iconProps) {
-  const className = `w-8 h-8 fill-white m-2`;
+  const className = `w-10 h-10 fill-white m-2`;
   switch (type) {
     case "entrada": {
       return <CiInboxIn className={className} />;
@@ -30,6 +31,9 @@ export default function Icon({ type }: iconProps) {
     }
     case "deletar": {
       return <CiTrash className={className} />;
+    }
+    case "cancelar": {
+      return <CiCircleRemove className={className} />;
     }
   }
 }

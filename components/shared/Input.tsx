@@ -16,7 +16,7 @@ export default function Input({
   type,
 }: inputProps) {
   return (
-    <div className="bg-white rounded-sm px-4 py-2 w-full">
+    <div className="bg-white rounded-md px-4 py-2 w-full">
       <input
         type={type || "text"}
         autoComplete={"off"}

@@ -10,7 +10,7 @@ export default function Controles() {
     <div className="flex flex-row gap-3 basis-24 items-center justify-center w-5/6 mb-5">
       {session === "form_transaction" ? (
         <>
-          <Button color="red" text="Deletar" icon="deletar" />
+          <Button color="red" text="Cancelar" icon="cancelar" />
           <Button color="green" text="Salvar" icon="salvar" />
         </>
       ) : (
