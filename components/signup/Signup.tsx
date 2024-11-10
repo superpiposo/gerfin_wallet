@@ -9,10 +9,12 @@ import Button from "../shared/Button";
 import { Signup_Service } from "./Signup.service";
 import { Signup_Store } from "./Signup.store";
 import Toggle_Theme from "../shared/Toggle_Theme";
+import { useRouter } from "next/navigation";
 
 const signup_service = new Signup_Service();
 
 export default function Signup() {
+  const router = useRouter();
   const { name, email, password, re_password } = Signup_Store();
   return (
     <Container>
@@ -53,10 +55,17 @@ export default function Signup() {
           />
           <div className="h-2"></div>
           <Button
-            color="blue"
+            color="green"
             text="Cadastrar-se"
             onClick={() => {
               signup_service.signup();
+            }}
+          />
+          <Button
+            color="blue"
+            text="Já sou cadastrado"
+            onClick={() => {
+              router.push("/signin");
             }}
           />
         </div>
