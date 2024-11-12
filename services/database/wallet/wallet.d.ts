@@ -1,5 +1,6 @@
 export interface CreateWallet {
   value: number;
+  score: number;
   userId: number;
 }
 

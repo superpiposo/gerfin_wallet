@@ -1,19 +1,21 @@
 import { Wallet } from "./wallet";
 import { prismaClientSingleton } from "../db";
-import { User_Service } from "../user/User.service";
+import { Transaction } from "@prisma/client";
 
 const prisma = prismaClientSingleton();
-const user_service = new User_Service();
-const income_score = process.env.INCOME;
-const outcome_score = process.env.OUTCOME;
 
 export class Wallet_Service {
-  async getOne(userId: number) {
+  private income_score: number;
+  private outcome_score: number;
+  constructor() {
+    this.income_score = 0.05;
+    this.outcome_score = 0.065;
+  }
+  async getOne(id: number) {
     try {
-      await user_service.exists(userId);
       const res = await prisma.wallet.findUnique({
         where: {
-          userId,
+          id,
         },
       });
       return res;
@@ -23,7 +25,6 @@ export class Wallet_Service {
   }
 
   async patch(userId: number, data: Partial<Wallet>) {
-    await user_service.exists(userId);
     try {
       const res = await prisma.wallet.update({
         where: {
@@ -52,6 +53,60 @@ export class Wallet_Service {
         },
       });
       return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeTransactionScore(transaction: Transaction) {
+    try {
+      const wallet = await prisma.wallet.findUnique({
+        where: { id: transaction.walletId },
+      });
+
+      if (!wallet) {
+        throw new Error("Transação não existente");
+      }
+
+      if (transaction.typeId === 1) {
+        const inserted = Number(transaction.value) * this.income_score;
+        const res = await this.patch(wallet?.id, {
+          score: Number(wallet?.score - inserted),
+        });
+        return res;
+      }
+      if (transaction.typeId === 2) {
+        const inserted = Number(transaction.value) * this.outcome_score;
+        const res = await this.patch(wallet.userId, {
+          score: Number(wallet.score + inserted),
+        });
+        return res;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeTransactionValue(transaction: Transaction) {
+    try {
+      const wallet = await prisma.wallet.findUnique({
+        where: { id: transaction.walletId },
+      });
+      if (!wallet) {
+        throw new Error("Transação não existente");
+      }
+      if (transaction.typeId === 1) {
+        const res = await this.patch(wallet.userId, {
+          value: Number(wallet.value) - Number(transaction.value),
+        });
+        return res;
+      }
+      if (transaction.typeId === 2) {
+        const res = await this.patch(wallet.userId, {
+          value: Number(wallet.value) + Number(transaction.value),
+        });
+        return res;
+      }
     } catch (error) {
       throw error;
     }
@@ -91,9 +146,9 @@ export class Wallet_Service {
 
   calc_score_update(value: number, type: string) {
     if (type === "income") {
-      return value * Number(income_score);
+      return value * Number(this.income_score);
     } else if (type === "outcome") {
-      return value * Number(outcome_score);
+      return value * Number(this.outcome_score);
     } else {
       throw new Error(
         "Tipo de transação não definida corretamente para o score!"

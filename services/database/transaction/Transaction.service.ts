@@ -1,10 +1,14 @@
 import { Wallet_Service } from "../wallet/Wallet.service";
 import { prismaClientSingleton } from "../db";
+import { Transaction } from "./Transaction";
 
 const prisma = prismaClientSingleton();
-const wallet = new Wallet_Service();
 
 export class Transaction_Service {
+  private wallet: Wallet_Service;
+  constructor() {
+    this.wallet = new Wallet_Service();
+  }
   async create(
     walletId: number,
     typeId: number,
@@ -12,7 +16,6 @@ export class Transaction_Service {
     description: string
   ) {
     try {
-      await wallet.exists(walletId);
       const res = await prisma.transaction.create({
         data: {
           walletId,
@@ -22,9 +25,9 @@ export class Transaction_Service {
         },
       });
       if (typeId === 1) {
-        await wallet.newIncome(walletId, value);
+        await this.wallet.newIncome(walletId, value);
       } else if (typeId === 2) {
-        await wallet.newIncome(walletId, value);
+        await this.wallet.newOutcome(walletId, value);
       }
       return res;
     } catch (error) {
@@ -32,34 +35,31 @@ export class Transaction_Service {
     }
   }
 
-  async patch(
-    id: number,
-    value?: number,
-    description?: string,
-    typeId?: number
-  ) {
+  async patch(id: number, data: Partial<Transaction>) {
     try {
-      await this.exists(id);
-      const transaction = await prisma.transaction.findUnique({
-        where: { id },
-      });
+      const transaction = await this.getOne(id);
+      if (!transaction) {
+        throw new Error("");
+      }
+      await this.wallet.removeTransactionScore(transaction);
+      await this.wallet.removeTransactionValue(transaction);
       const res = await prisma.transaction.update({
         where: {
           id,
         },
-        data: {
-          value,
-          description,
-          typeId,
-        },
+        data,
       });
-      if (transaction?.typeId === 1) {
-        await wallet.newOutcome(
+
+      if (transaction.value && transaction?.typeId === 1) {
+        await this.wallet.newIncome(
           transaction.walletId,
-          Number(transaction.value)
+          Number(data.value) || 0
         );
       } else if (transaction?.typeId === 2) {
-        await wallet.newIncome(transaction.walletId, Number(transaction.value));
+        await this.wallet.newOutcome(
+          transaction.walletId,
+          Number(data.value) || 0
+        );
       }
       return res;
     } catch (error) {
@@ -81,7 +81,6 @@ export class Transaction_Service {
   }
 
   async getMany(walletId: number, take: number, skip: number) {
-    await wallet.exists(walletId);
     try {
       const res = await prisma.transaction.findMany({
         where: {
@@ -98,26 +97,21 @@ export class Transaction_Service {
 
   async delete(id: number) {
     try {
-      await this.exists(id);
-      const transaction = await prisma.transaction.findUnique({
+      const transaction = await prisma.transaction.findFirst({
         where: {
           id,
         },
       });
+      if (!transaction) {
+        throw new Error("Transação não encontrada!");
+      }
       const res = await prisma.transaction.delete({
         where: {
           id,
         },
       });
-
-      if (transaction?.typeId === 1) {
-        await wallet.newOutcome(
-          transaction.walletId,
-          Number(transaction.value)
-        );
-      } else if (transaction?.typeId === 2) {
-        await wallet.newIncome(transaction.walletId, Number(transaction.value));
-      }
+      await this.wallet.removeTransactionScore(transaction);
+      await this.wallet.removeTransactionValue(transaction);
 
       return res;
     } catch (error) {

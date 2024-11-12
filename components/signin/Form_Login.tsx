@@ -54,13 +54,6 @@ export default function Form_Login() {
             }}
           />
         </div>
-        <Button
-          color="blue"
-          text="Esqueci minha senha"
-          onClick={() => {
-            router.push("/signup");
-          }}
-        />
       </Form_Container>
     </Container>
   );
