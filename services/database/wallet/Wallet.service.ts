@@ -20,10 +20,21 @@ export class Wallet_Service {
       });
       return res;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
-
+  async findByUserId(userId: number) {
+    try {
+      const res = await prisma.wallet.findFirst({
+        where: {
+          userId,
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
   async patch(userId: number, data: Partial<Wallet>) {
     try {
       const res = await prisma.wallet.update({

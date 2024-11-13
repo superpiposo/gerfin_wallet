@@ -8,4 +8,12 @@ export class Client_Wallet_Service {
       throw error;
     }
   }
+  async findByUserId(id: number) {
+    try {
+      const res = await gerfin_api.get(`/wallet/user/?id=${id}`);
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }

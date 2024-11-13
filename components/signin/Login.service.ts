@@ -17,7 +17,8 @@ export class Login_Service {
         credentials.email,
         credentials.password
       );
-      set_user(res.data);
+      console.log(res.data.res);
+      set_user(res.data.res);
       toast.success("Usuario válido!");
       return true;
     } catch (error) {
