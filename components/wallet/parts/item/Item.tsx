@@ -27,7 +27,7 @@ export default function Item({
     <div
       className={`
         flex flex-row justify-center text-center landscape:h-14 portrait:h-14 items-center
-            font-medium text-sm rounded-md
+            font-medium text-sm rounded-md mx-3
             ${
               tipo_transacao === "entrada"
                 ? "bg-gradient-to-t from-green_dark to-green text-white border-green border"

@@ -45,10 +45,10 @@ export default function Wallet() {
           <Toggle_Theme />
           <Form_Container>
             <div className="flex-grow w-5/6 pt-10">
-              <div className="w-full h-full rounded-md border-stone-300 dark:border-stone-700 overflow-hidden relative">
+              <div className="w-full h-full flex flex-col rounded-md border-stone-300 dark:border-stone-700 overflow-hidden relative">
                 <div
-                  className="w-full h-full bg-white dark:bg-stone-800 rounded-md border border-stone-300 
-          flex flex-col overflow-y-scroll overflow-x-hidden gap-1 p-2 relative"
+                  className="w-full flex-grow bg-white dark:bg-stone-700 rounded-md border border-stone-300 
+          flex flex-col gap-3 relative overflow-hidden pt-3"
                 >
                   {transacoes.map((transacao, index) => (
                     <Item
@@ -60,8 +60,8 @@ export default function Wallet() {
                     />
                   ))}
                   <div className="flex-grow"></div>
+                  <Tool_Panel />
                 </div>
-                <Tool_Panel />
               </div>
             </div>
             <Controles />

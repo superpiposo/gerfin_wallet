@@ -8,10 +8,10 @@ export default function Tool_Panel_Container({
   children: ReactNode;
 }) {
   return (
-    <div className="w-full landscape:h-32 portrait:h-60 landscape:p-4 portrait:p-2 absolute bottom-0 potrait:right-2">
+    <div className="max-w-full landscape:basis-32 portrait:basis-32">
       <div
-        className="w-full h-full bg-stone-200 dark:bg-stone-900 dark:border-stone-700 flex landscape:flex-row portrait:flex-col
-            rounded-md border border-stone-300 py-2 px-4"
+        className="w-full h-full bg-stone-200 dark:bg-stone-800 dark:border-stone-600 flex flex-row
+            border-t border-stone-300 py-4 px-4"
       >
         {children}
       </div>
