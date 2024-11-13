@@ -42,8 +42,10 @@ export default function Form_Login() {
           <Button
             color="green"
             text="Acessar"
-            onClick={() => {
-              login_service.login();
+            onClick={async () => {
+              login_service.login().then(() => {
+                router.push("/wallet");
+              });
             }}
           />
           <Button
