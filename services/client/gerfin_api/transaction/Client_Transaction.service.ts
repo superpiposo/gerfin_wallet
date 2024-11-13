@@ -13,10 +13,10 @@ export class Client_Transaction_Service {
   }
   async getManny(walletId: number, take: number, skip: number) {
     try {
-      const res = await gerfin_api.post(
-        `transaction?walletId=${walletId}&take=${take}&skip=${skip}`
+      const res = await gerfin_api.get(
+        `/transaction?walletid=${walletId}&take=${take}&skip=${skip}`
       );
-      return res.data;
+      return res.data.data;
     } catch (error) {
       throw error;
     }

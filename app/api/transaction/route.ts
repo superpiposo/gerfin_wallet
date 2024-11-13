@@ -6,21 +6,27 @@ const transaction_service = new Transaction_Service();
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
-    const walletId = searchParams.get("walletId");
+    const walletid = searchParams.get("walletid");
     const skip = searchParams.get("skip");
     const take = searchParams.get("take");
-    if (!walletId || !skip || !take) {
+    if (!walletid || !skip || !take) {
       return Response.json({
         status: 400,
         message: "Dados incompletos!",
       });
     }
-    const res = await transaction_service.getMany(
-      Number(walletId),
+    const data = await transaction_service.getMany(
+      Number(walletid),
       Number(take),
       Number(skip)
     );
-    return Response.json(res);
+    if (data.length < 1) {
+      return Response.json({ status: 200, data: [] });
+    }
+    return Response.json({
+      status: 200,
+      data,
+    });
   } catch (error) {
     return Response.json({
       status: 500,

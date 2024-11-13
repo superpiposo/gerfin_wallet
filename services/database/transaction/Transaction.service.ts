@@ -81,13 +81,16 @@ export class Transaction_Service {
   }
 
   async getMany(walletId: number, take: number, skip: number) {
+    console.log(walletId);
     try {
       const res = await prisma.transaction.findMany({
-        where: {
-          walletId,
-        },
         take,
         skip,
+        where: {
+          walletId: {
+            equals: walletId,
+          },
+        },
       });
       return res;
     } catch (error) {

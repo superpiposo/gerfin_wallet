@@ -13,8 +13,8 @@ export async function GET(request: NextRequest) {
         message: "Dados incompletos!",
       });
     }
-    const res = await wallet_service.getOne(Number(id));
-    return Response.json(res);
+    const data = await wallet_service.getOne(Number(id));
+    return Response.json(data);
   } catch (error) {
     return Response.json({
       status: 500,

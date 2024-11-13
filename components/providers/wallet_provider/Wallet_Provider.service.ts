@@ -13,8 +13,7 @@ export class Wallet_Provider_Service {
         throw new Error("usuario não salvo no estado global!");
       }
       const res = await client_wallet_service.findByUserId(user?.id);
-      console.log(res);
-      set_wallet(res);
+      set_wallet(res.res);
     } catch (error) {
       console.error({ error });
       toast.error("Algo deu errado com o Wallet_Provider!");
