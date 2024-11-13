@@ -23,6 +23,7 @@ export default function Form_Login() {
         <div className="h-2"></div>
         <div className="flex flex-col gap-4 landscape:w-3/5 portrait:w-5/6">
           <Input
+            type="email"
             onChange={(e) => {
               login_service.change_user_email(e);
             }}
@@ -30,6 +31,7 @@ export default function Form_Login() {
             value={email}
           />
           <Input
+            type="password"
             onChange={(e) => {
               login_service.change_user_password(e);
             }}
