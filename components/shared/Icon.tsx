@@ -1,14 +1,13 @@
 "use client";
 
 import React from "react";
+import { CiCircleCheck, CiCircleRemove, CiSearch } from "react-icons/ci";
 import {
-  CiCircleCheck,
-  CiCircleRemove,
-  CiEdit,
-  CiInboxIn,
-  CiInboxOut,
-  CiSearch,
-} from "react-icons/ci";
+  GiPayMoney,
+  GiReceiveMoney,
+  GiSettingsKnobs,
+  GiTrashCan,
+} from "react-icons/gi";
 
 type iconProps = {
   type: string;
@@ -21,10 +20,10 @@ export default function Icon({ type, size, color }: iconProps) {
   ${color === "white" ? "fill-stone-600" : "fill-white"}`;
   switch (type) {
     case "entrada": {
-      return <CiInboxIn className={className} />;
+      return <GiReceiveMoney className={className} />;
     }
     case "saida": {
-      return <CiInboxOut className={className} />;
+      return <GiPayMoney className={className} />;
     }
     case "filtro": {
       return <CiSearch className={className} />;
@@ -33,10 +32,13 @@ export default function Icon({ type, size, color }: iconProps) {
       return <CiCircleCheck className={className} />;
     }
     case "deletar": {
-      return <CiEdit className={className} />;
+      return <GiTrashCan className={className} />;
     }
     case "cancelar": {
       return <CiCircleRemove className={className} />;
+    }
+    case "config": {
+      return <GiSettingsKnobs className={className} />;
     }
   }
 }

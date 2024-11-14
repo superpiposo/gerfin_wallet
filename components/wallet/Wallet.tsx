@@ -10,6 +10,9 @@ import Toggle_Theme from "../shared/Toggle_Theme";
 import Wallet_Provider from "../providers/wallet_provider/Wallet_Provider";
 import Transaction_Provider from "../providers/transaction_provider/Transaction_Provider";
 import { Transaction_Store } from "@/global_stores/Transaction.store";
+import { Wallet_Service } from "./Wallet.service";
+
+const wallet_service = new Wallet_Service();
 
 export default function Wallet() {
   const { transactions } = Transaction_Store();
@@ -25,12 +28,15 @@ export default function Wallet() {
                   className="w-full flex-grow bg-white dark:bg-stone-700 rounded-md border border-stone-300 
           flex flex-col gap-2 relative overflow-hidden"
                 >
-                  <div className="flex flex-col gap-3 overflow-y-scroll basis-5/6 pt-3">
+                  <div className="flex flex-col gap-3 overflow-y-scroll basis-5/6 py-3">
                     {transactions &&
                       transactions.length > 0 &&
                       transactions.map((transacao, index) => (
                         <Item
                           key={index}
+                          onClick={() => {
+                            wallet_service.delete_transaction(transacao.id);
+                          }}
                           data={transacao.date.toString()}
                           tipo_transacao={transacao.typeId}
                           motivo={transacao.description}

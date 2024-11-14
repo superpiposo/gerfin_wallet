@@ -8,6 +8,7 @@ type itemProps = {
   motivo: string;
   valor: number;
   tipo_transacao: number;
+  onClick: () => void;
 };
 
 export default function Item({
@@ -15,6 +16,7 @@ export default function Item({
   motivo,
   valor,
   tipo_transacao,
+  onClick,
 }: itemProps) {
   const money_formater = (value: number): string => {
     const formatter = new Intl.NumberFormat("pt-BR", {
@@ -44,7 +46,13 @@ export default function Item({
       <div className="basis-1/4">{motivo}</div>
       <div className="basis-1/4">{money_formater(valor)}</div>
       <div className="basis-1/4 flex flex-row gap-1 justify-end">
-        <Button color="white" text="deletar" icon="deletar" size="small" />
+        <Button
+          color="white"
+          text="deletar"
+          icon="deletar"
+          size="small"
+          onClick={onClick}
+        />
       </div>
     </div>
   );

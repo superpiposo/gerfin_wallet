@@ -24,8 +24,8 @@ export default function Button({
       type="button"
       onClick={onClick}
       className={`
-            outline-none
-            hover:scale-105 active:scale-95
+            outline-none group
+            hover:scale-105 active:group-scale-95
             hover:shadow-md active:shadow-none
             transition-all dark:border-white dark:border
             ${
