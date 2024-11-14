@@ -30,7 +30,7 @@ export default function Item({
   return (
     <div
       className={`
-        flex flex-row justify-center text-left landscape:h-14 portrait:h-14 items-center
+        flex flex-row justify-center text-left landscape:h-16 portrait:h-16 items-center
             font-medium text-sm rounded-md mx-3 px-2 py-5 gap-3
             ${
               tipo_transacao === 1
@@ -43,7 +43,7 @@ export default function Item({
       <div className="basis-1/4">
         {date.getDate()}/{date.getMonth()}/{date.getFullYear()}
       </div>
-      <div className="basis-1/4">{motivo}</div>
+      <div className="basis-1/4 line-clamp-1">{motivo}</div>
       <div className="basis-1/4">{money_formater(valor)}</div>
       <div className="basis-1/4 flex flex-row gap-1 justify-end">
         <Button

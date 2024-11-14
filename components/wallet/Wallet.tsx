@@ -30,7 +30,7 @@ export default function Wallet() {
                     className="w-full flex-grow bg-white dark:bg-stone-700 rounded-md border border-stone-300 
           flex flex-col gap-2 relative overflow-hidden"
                   >
-                    <div className="flex flex-col gap-3 overflow-y-scroll basis-5/6 py-3">
+                    <div className="flex flex-col gap-2 overflow-y-scroll basis-5/6 py-3">
                       {transactions && transactions.length > 0 ? (
                         transactions.map((transacao, index) => (
                           <Item

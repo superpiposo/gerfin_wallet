@@ -1,5 +1,6 @@
 import { Insights_Store } from "@/global_stores/Insights.store";
 import { Transaction_Store } from "@/global_stores/Transaction.store";
+import { Wallet_Store } from "@/global_stores/Wallet.store";
 
 export class Insights_Provider_Service {
   feed_insights() {
@@ -9,17 +10,9 @@ export class Insights_Provider_Service {
   }
   calc_caixa() {
     const { set_caixa } = Insights_Store.getState();
-    const { transactions } = Transaction_Store.getState();
-    let caixa: number = 0;
-    if (!transactions || transactions?.length < 1) return;
-    transactions?.map((transaction) => {
-      if (transaction.typeId === 1) {
-        caixa = caixa + Number(transaction.value);
-      } else if (transaction.typeId === 2) {
-        caixa = caixa - Number(transaction.value);
-      }
-    });
-    set_caixa(caixa);
+    const { wallet } = Wallet_Store.getState();
+    if (!wallet) return;
+    set_caixa(Number(wallet.value));
   }
   calc_entradas() {
     const { set_entradas } = Insights_Store.getState();

@@ -40,7 +40,7 @@ export default function Form_Login() {
           />
         </div>
         <div className="h-2"></div>
-        <div className="landscape:w-3/5 portrait:w-5/6 justify-center flex flex-row gap-2">
+        <div className="landscape:w-3/5 portrait:w-5/6 justify-center flex flex-col gap-2">
           <Button
             color="green"
             text="Acessar"
