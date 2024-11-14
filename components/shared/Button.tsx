@@ -30,7 +30,7 @@ export default function Button({ text, onClick, color, icon }: buttonProps) {
                 ? "bg-red hover:bg-red_hover"
                 : ""
             } ${!icon && "w-full rounded-md py-2 px-3 text-white font-bold"}
-             ${icon && " rounded-full"}
+             ${icon && " rounded-full p-1"}
             `}
     >
       {!icon && text}
