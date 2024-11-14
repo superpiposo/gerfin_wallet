@@ -46,6 +46,7 @@ export class Transaction_Provider_Service {
         const sorted: Transaction[] = this.sort_transactions(transactions);
         set_transactions(sorted);
       } else {
+        set_transactions([]);
         toast.warning("Nenhuma transação encontrada");
       }
       set_get_transactions(false);

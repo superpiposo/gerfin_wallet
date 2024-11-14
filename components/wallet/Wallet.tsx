@@ -31,8 +31,7 @@ export default function Wallet() {
           flex flex-col gap-2 relative overflow-hidden"
                   >
                     <div className="flex flex-col gap-3 overflow-y-scroll basis-5/6 py-3">
-                      {transactions &&
-                        transactions.length > 0 &&
+                      {transactions && transactions.length > 0 ? (
                         transactions.map((transacao, index) => (
                           <Item
                             key={index}
@@ -44,7 +43,17 @@ export default function Wallet() {
                             motivo={transacao.description}
                             valor={Number(transacao.value)}
                           />
-                        ))}
+                        ))
+                      ) : (
+                        <div className="w-full h-30 px-3 ">
+                          <div
+                            className="border border-green bg-green w-full h-full rounded-md p-3 text-white
+                           justify-center items-center flex"
+                          >
+                            Não existem transações!
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <Tool_Panel />
                   </div>
