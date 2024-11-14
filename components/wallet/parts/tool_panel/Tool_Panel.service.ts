@@ -11,9 +11,8 @@ export class Tool_Panel_Service {
   async create_transaction() {
     const { description, date, value, transaction_type } =
       Form_Transaction_Store.getState();
-    const { wallet } = Wallet_Store.getState();
+    const { wallet, set_get_wallet } = Wallet_Store.getState();
     const { set_get_transactions } = Transaction_Store.getState();
-    console.log({ description, date, value, transaction_type });
     if (
       !description ||
       description.length < 3 ||
@@ -34,6 +33,7 @@ export class Tool_Panel_Service {
         date: date,
       });
       set_get_transactions(true);
+      set_get_wallet(true);
       form_transaction_service.reset_all();
       return;
     }

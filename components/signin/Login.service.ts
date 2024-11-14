@@ -2,12 +2,14 @@ import { toast } from "sonner";
 import { Login_Store } from "./Login.store";
 import { Client_Auth_Service } from "@/services/client/gerfin_api/auth/Client_Auth.service";
 import { User_Store } from "@/global_stores/User.store";
+import { Wallet_Store } from "@/global_stores/Wallet.store";
 
 const client_auth = new Client_Auth_Service();
 
 export class Login_Service {
   async login() {
     const { set_user } = User_Store.getState();
+    const { set_get_wallet } = Wallet_Store.getState();
     try {
       const credentials = this.valid_credentials();
       if (!credentials?.email || !credentials.password) {
@@ -17,9 +19,9 @@ export class Login_Service {
         credentials.email,
         credentials.password
       );
-      console.log(res.data.res);
       set_user(res.data.res);
       toast.success("Usuario válido!");
+      set_get_wallet(true);
       return true;
     } catch (error) {
       console.error(error);
