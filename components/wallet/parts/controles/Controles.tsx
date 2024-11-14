@@ -21,7 +21,14 @@ export default function Controles() {
               controles_service.cancel_transaction();
             }}
           />
-          <Button color="green" text="Salvar" icon="salvar" />
+          <Button
+            color="green"
+            text="Salvar"
+            icon="salvar"
+            onClick={() => {
+              controles_service.create_transaction();
+            }}
+          />
         </>
       ) : (
         <>
