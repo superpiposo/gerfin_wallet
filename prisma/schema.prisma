@@ -36,6 +36,7 @@ model Transaction {
   id          Int             @id @default(autoincrement())
   value       Decimal         @db.Money
   description String
+  date        DateTime
   type        TransactionType @relation(fields: [typeId], references: [id])
   typeId      Int
 

@@ -1,6 +1,6 @@
-import { Wallet_Store } from "@/global_stores/Wallet.store";
 import React, { ReactNode, useEffect } from "react";
 import { Transaction_Provider_Service } from "./Transaction_Provider.service";
+import { Transaction_Store } from "@/global_stores/Transaction.store";
 
 const transaction_provider_service = new Transaction_Provider_Service();
 
@@ -9,9 +9,11 @@ export default function Transaction_Provider({
 }: {
   children: ReactNode;
 }) {
-  const { wallet } = Wallet_Store();
+  const { get_transactions } = Transaction_Store();
+
   useEffect(() => {
-    transaction_provider_service.start();
-  }, [wallet]);
+    transaction_provider_service.get_transactions();
+  }, [get_transactions]);
+
   return <>{children}</>;
 }

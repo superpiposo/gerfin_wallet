@@ -25,10 +25,12 @@ export class Client_Transaction_Service {
     try {
       const res = await gerfin_api.post(`/transaction`, {
         walletId: transaction.walletId,
-        typeId: transaction.walletId,
+        date: transaction.date,
+        typeId: transaction.typeId,
         value: transaction.value,
         description: transaction.description,
       });
+      console.log(transaction);
       return res.data;
     } catch (error) {
       throw error;

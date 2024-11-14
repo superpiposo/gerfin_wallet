@@ -3,6 +3,7 @@ export interface CreateTransaction {
   typeId: number;
   walletId: number;
   description: string;
+  date: string;
 }
 
 export interface Transaction extends CreateTransaction {

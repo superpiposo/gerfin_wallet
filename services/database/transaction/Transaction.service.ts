@@ -11,6 +11,7 @@ export class Transaction_Service {
   }
   async create(
     walletId: number,
+    date: string,
     typeId: number,
     value: number,
     description: string
@@ -19,6 +20,7 @@ export class Transaction_Service {
       const res = await prisma.transaction.create({
         data: {
           walletId,
+          date: new Date(date),
           value,
           description,
           typeId,

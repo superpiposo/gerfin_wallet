@@ -56,13 +56,14 @@ export async function PATCH(request: Request) {
 }
 export async function POST(request: Request) {
   try {
-    const { walletId, typeId, value, description } = await request.json();
+    const { walletId, typeId, value, description, date } = await request.json();
     if (
       !walletId ||
       !typeId ||
       !value ||
       !description ||
-      description.length < 1
+      description.length < 1 ||
+      !date
     ) {
       return Response.json({
         status: 400,
@@ -71,6 +72,7 @@ export async function POST(request: Request) {
     }
     const res = await transaction_service.create(
       walletId,
+      date,
       typeId,
       value,
       description
