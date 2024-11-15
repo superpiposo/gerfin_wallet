@@ -32,6 +32,13 @@ export default function Navbar() {
         {toggle && (
           <>
             <Button
+              title="Filtre as transações por data!"
+              size="medium"
+              text="filtro"
+              icon="filtro"
+              color="blue"
+            />
+            <Button
               title="Configuração de conta"
               size="medium"
               text="profile"

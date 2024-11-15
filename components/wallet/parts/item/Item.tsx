@@ -41,7 +41,7 @@ export default function Item({
             }`}
     >
       <div className="basis-1/4">
-        {date.getDate()}/{date.getMonth()}/{date.getFullYear()}
+        {date.getDate() + 1}/{date.getMonth() + 1}/{date.getFullYear()}
       </div>
       <div className="basis-1/4 line-clamp-1">{motivo}</div>
       <div className="basis-1/4">{money_formater(valor)}</div>
