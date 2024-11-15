@@ -58,7 +58,7 @@ export class Transaction_Provider_Service {
   }
   sort_transactions(transactions: Transaction[]): Transaction[] {
     const { sorted_by } = Transaction_Store.getState();
-    if (sorted_by === "inserted_date") {
+    if (sorted_by === "insert_date") {
       return transactions.sort(this.sortByDate);
     } else {
       return transactions;
@@ -66,13 +66,12 @@ export class Transaction_Provider_Service {
   }
 
   sortByDate(a: Transaction, b: Transaction): number {
-    // Compare the date properties
     if (a.date > b.date) {
       return 1;
     } else if (a.date < b.date) {
       return -1;
     } else {
-      return 0; // Equal dates
+      return 0;
     }
   }
 }

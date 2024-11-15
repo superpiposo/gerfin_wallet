@@ -31,6 +31,7 @@ export class Transaction_Service {
       } else if (typeId === 2) {
         await this.wallet.newOutcome(walletId, value);
       }
+      await this.wallet.insertInTotalTransactions(walletId);
       return res;
     } catch (error) {
       throw error;
@@ -117,7 +118,7 @@ export class Transaction_Service {
       });
       await this.wallet.removeTransactionScore(transaction);
       await this.wallet.removeTransactionValue(transaction);
-
+      await this.wallet.removeFromTotalTransactions(transaction.walletId);
       return res;
     } catch (error) {
       throw error;

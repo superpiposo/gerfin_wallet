@@ -142,6 +142,39 @@ export class Wallet_Service {
     }
   }
 
+  async insertInTotalTransactions(id: number) {
+    try {
+      const wallet = await this.exists(id);
+      const res = await prisma.wallet.update({
+        where: {
+          id,
+        },
+        data: {
+          total_transactions: wallet.total_transactions + 1,
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async removeFromTotalTransactions(id: number) {
+    try {
+      const wallet = await this.exists(id);
+      const res = await prisma.wallet.update({
+        where: {
+          id,
+        },
+        data: {
+          total_transactions: wallet.total_transactions - 1,
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async exists(id: number) {
     const res = await prisma.wallet.findUnique({
       where: {
