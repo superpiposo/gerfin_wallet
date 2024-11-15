@@ -32,6 +32,11 @@ export class Transaction_Service {
         await this.wallet.newOutcome(walletId, value);
       }
       await this.wallet.insertInTotalTransactions(walletId);
+      if (res.typeId === 1) {
+        await this.wallet.insertInTotalIncomes(res);
+      } else if (res.typeId === 2) {
+        await this.wallet.insertInTotalOutcomes(res);
+      }
       return res;
     } catch (error) {
       throw error;
@@ -119,6 +124,11 @@ export class Transaction_Service {
       await this.wallet.removeTransactionScore(transaction);
       await this.wallet.removeTransactionValue(transaction);
       await this.wallet.removeFromTotalTransactions(transaction.walletId);
+      if (transaction.typeId === 1) {
+        await this.wallet.removeFromTotalIncomes(transaction);
+      } else if (transaction.typeId === 2) {
+        await this.wallet.removeFromTotalOutcomes(transaction);
+      }
       return res;
     } catch (error) {
       throw error;

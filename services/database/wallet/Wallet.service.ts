@@ -175,6 +175,74 @@ export class Wallet_Service {
     }
   }
 
+  async insertInTotalIncomes(transaction: Transaction) {
+    try {
+      const wallet = await this.exists(transaction.walletId);
+      const res = await prisma.wallet.update({
+        where: {
+          id: wallet.id,
+        },
+        data: {
+          all_incomes: wallet.all_incomes + Number(transaction.value),
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeFromTotalIncomes(transaction: Transaction) {
+    try {
+      const wallet = await this.exists(transaction.walletId);
+      const res = await prisma.wallet.update({
+        where: {
+          id: wallet.id,
+        },
+        data: {
+          all_incomes: wallet.all_incomes - Number(transaction.value),
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async insertInTotalOutcomes(transaction: Transaction) {
+    try {
+      const wallet = await this.exists(transaction.walletId);
+      const res = await prisma.wallet.update({
+        where: {
+          id: wallet.id,
+        },
+        data: {
+          all_outcomes: wallet.all_outcomes + Number(transaction.value),
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeFromTotalOutcomes(transaction: Transaction) {
+    try {
+      const wallet = await this.exists(transaction.walletId);
+      const res = await prisma.wallet.update({
+        where: {
+          id: wallet.id,
+        },
+        data: {
+          all_outcomes: wallet.all_outcomes - Number(transaction.value),
+        },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async exists(id: number) {
     const res = await prisma.wallet.findUnique({
       where: {
