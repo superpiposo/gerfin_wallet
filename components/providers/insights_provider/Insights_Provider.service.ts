@@ -18,7 +18,10 @@ export class Insights_Provider_Service {
     const { set_entradas } = Insights_Store.getState();
     const { transactions } = Transaction_Store.getState();
     let entradas: number = 0;
-    if (!transactions || transactions?.length < 1) return;
+    if (!transactions || transactions?.length < 1) {
+      set_entradas(0);
+      return;
+    }
     transactions.map((transaction) => {
       if (transaction.typeId === 1) {
         entradas = entradas + Number(transaction.value);
@@ -30,7 +33,10 @@ export class Insights_Provider_Service {
     const { set_saidas } = Insights_Store.getState();
     const { transactions } = Transaction_Store.getState();
     let saidas: number = 0;
-    if (!transactions || transactions?.length < 1) return;
+    if (!transactions || transactions?.length < 1) {
+      set_saidas(0);
+      return;
+    }
     transactions.map((transaction) => {
       if (transaction.typeId === 2) {
         saidas = saidas + Number(transaction.value);
