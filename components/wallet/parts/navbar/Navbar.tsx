@@ -55,7 +55,7 @@ export default function Navbar() {
               icon={"logout"}
               color="red"
               onClick={() => {
-                darkModeHandler();
+                navbar_service.logout();
               }}
             />
           </>

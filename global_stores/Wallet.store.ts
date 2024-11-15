@@ -6,7 +6,7 @@ type state = {
   get_wallet: boolean;
 };
 type action = {
-  set_wallet: (wallet: Wallet) => void;
+  set_wallet: (wallet: Wallet | undefined) => void;
   set_get_wallet: (get_wallet: boolean) => void;
 };
 
