@@ -6,7 +6,6 @@ import Title from "../shared/Title";
 import Button from "../shared/Button";
 import { useRouter } from "next/navigation";
 import Form_Container from "../shared/Form_Container";
-import Toggle_Theme from "../shared/Toggle_Theme";
 import { Login_Store } from "./Login.store";
 import { Login_Service } from "./Login.service";
 
@@ -17,7 +16,6 @@ export default function Form_Login() {
   const router = useRouter();
   return (
     <Container>
-      <Toggle_Theme />
       <Form_Container>
         <Title text="Acesse sua carteira" />
         <div className="h-2"></div>

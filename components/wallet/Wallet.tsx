@@ -6,10 +6,10 @@ import Form_Container from "../shared/Form_Container";
 import Item from "./parts/item/Item";
 import Controles from "./parts/controles/Controles";
 import Tool_Panel from "./parts/tool_panel/Tool_Panel";
-import Toggle_Theme from "../shared/Toggle_Theme";
 import { Transaction_Store } from "@/global_stores/Transaction.store";
 import { Wallet_Service } from "./Wallet.service";
 import Providers from "../providers/Providers";
+import Navbar from "./parts/navbar/Navbar";
 
 const wallet_service = new Wallet_Service();
 
@@ -18,7 +18,7 @@ export default function Wallet() {
   return (
     <Providers>
       <Container>
-        <Toggle_Theme />
+        <Navbar />
         <Form_Container>
           <div className="flex-grow w-5/6 pt-10">
             <div className="w-full h-full flex flex-col rounded-md border-stone-300 dark:border-stone-700 overflow-hidden relative">

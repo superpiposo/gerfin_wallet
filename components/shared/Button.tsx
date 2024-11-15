@@ -18,10 +18,12 @@ export default function Button({
   color,
   icon,
   size,
+  title,
 }: buttonProps) {
   return (
     <button
       type="button"
+      title={title}
       onClick={onClick}
       className={`
             outline-none group

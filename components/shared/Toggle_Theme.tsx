@@ -12,8 +12,8 @@ function Toggle_Theme() {
 
   return (
     <div
-      className="bg-stone-600 border border-stone-300 rounded-md flex 
-    justify-center items-center absolute top-5 right-5 z-10 hover:scale-105 active:scale-95
+      className="bg-stone-600 border border-stone-300 rounded-full flex 
+    justify-center items-center z-10 hover:scale-105 active:scale-95
     dark:bg-yellow-400 dark:border-stone-200"
     >
       <button onClick={() => darkModeHandler()}>

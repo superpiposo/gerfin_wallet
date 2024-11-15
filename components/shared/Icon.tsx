@@ -1,13 +1,17 @@
 "use client";
 
 import React from "react";
+import { BiSolidLogOutCircle } from "react-icons/bi";
 import { CiCircleCheck, CiCircleRemove, CiSearch } from "react-icons/ci";
 import {
+  GiMoon,
   GiPayMoney,
   GiReceiveMoney,
   GiSettingsKnobs,
+  GiSun,
   GiTrashCan,
 } from "react-icons/gi";
+import { RiAccountCircleFill } from "react-icons/ri";
 
 type iconProps = {
   type: string;
@@ -16,7 +20,13 @@ type iconProps = {
 };
 
 export default function Icon({ type, size, color }: iconProps) {
-  const className = `${size === "small" ? "w-4 h-4 m-2" : "w-8 h-8 m-3"}
+  const className = `${
+    size === "small"
+      ? "w-4 h-4 m-2"
+      : size === "medium"
+      ? "w-6 h-6 m-2"
+      : "w-8 h-8 m-3"
+  }
   ${color === "white" ? "fill-stone-600" : "fill-white"}`;
   switch (type) {
     case "entrada": {
@@ -39,6 +49,18 @@ export default function Icon({ type, size, color }: iconProps) {
     }
     case "config": {
       return <GiSettingsKnobs className={className} />;
+    }
+    case "profile": {
+      return <RiAccountCircleFill className={className} />;
+    }
+    case "moon": {
+      return <GiMoon className={className} />;
+    }
+    case "sun": {
+      return <GiSun className={className} />;
+    }
+    case "logout": {
+      return <BiSolidLogOutCircle className={className} />;
     }
   }
 }
