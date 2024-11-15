@@ -11,10 +11,10 @@ export default function Frase_Motivacional() {
     <article className="basis-1/3 h-full  flex flex-col gap-2  portrait:hidden">
       <Caption text="Frase do dia" />
       <div className="flex flex-col justify-center flex-grow">
-        <p className="text-[7.5pt] dark:text-white">
-          "{frase_atual.frase}
-          <span className="text-stone-400">{frase_atual.autor}</span>"
-        </p>
+        <p className="text-[7.5pt] dark:text-white">"{frase_atual.frase}</p>
+        <span className="text-[7.5pt] text-stone-400">
+          {frase_atual.autor}"
+        </span>
       </div>
     </article>
   );

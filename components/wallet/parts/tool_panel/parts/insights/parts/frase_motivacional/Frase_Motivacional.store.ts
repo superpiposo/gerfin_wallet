@@ -14,7 +14,6 @@ type action = {
 export const Frase_Motivacional_Store = create<state & action>((set) => ({
   frases: frases_json.frases,
   set_frases: (frases) => set({ frases }),
-  frase_atual:
-    frases_json.frases[Math.floor(Math.random() * frases_json.frases.length)],
+  frase_atual: frases_json.frases[1],
   set_frase_atual: (frase_atual) => set({ frase_atual }),
 }));
