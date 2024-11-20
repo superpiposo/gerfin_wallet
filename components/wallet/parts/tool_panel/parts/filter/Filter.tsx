@@ -1,16 +1,12 @@
 "use client";
 
-import Button from "@/components/shared/Button";
+import Button_Extended from "@/components/shared/Button_Extended";
 import { Transaction_Store } from "@/global_stores/Transaction.store";
 import React from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 
 export default function Filter() {
   const { filtred_dates, set_filtred_dates } = Transaction_Store();
-  // const [value, setValue] = useState({
-  //   startDate: null,
-  //   endDate: null,
-  // });
   return (
     <div
       className="h-full w-full flex landscape:flex-row portrait:flex-col gap-4
@@ -28,7 +24,12 @@ export default function Filter() {
           useRange={false}
         />
       </div>
-      <Button color="red" text="cancelar" icon="cancelar" size="small" />
+      <Button_Extended
+        color="red"
+        text="limpar"
+        icon="cancelar"
+        size="medium"
+      />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Wallet() {
                         className="border border-green bg-green w-full h-full rounded-md p-3 text-white
                            justify-center items-center flex"
                       >
-                        Não existem transações!
+                        Cadastre transações abaixo para começar!
                       </div>
                     </div>
                   )}

@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "@/components/shared/Button";
 import React from "react";
 import { Tool_Panel_Store } from "../tool_panel/Tool_Panel.store";
 import { Controles_Service } from "./Controles.service";
+import Button_Extended from "@/components/shared/Button_Extended";
 
 const controles_service = new Controles_Service();
 
@@ -13,18 +13,20 @@ export default function Controles() {
     <div className="flex flex-row gap-3 basis-24 items-center justify-center w-5/6 mb-5">
       {session === "form_transaction" ? (
         <>
-          <Button
+          <Button_Extended
             color="red"
             text="Cancelar"
             icon="cancelar"
+            size="medium"
             onClick={() => {
               controles_service.cancel_transaction();
             }}
           />
-          <Button
+          <Button_Extended
             color="green"
             text="Salvar"
             icon="salvar"
+            size="medium"
             onClick={() => {
               controles_service.create_transaction();
             }}
@@ -32,39 +34,42 @@ export default function Controles() {
         </>
       ) : session === "filter" ? (
         <>
-          <Button
+          <Button_Extended
             color="red"
             text="Cancelar"
             icon="cancelar"
+            size="medium"
             onClick={() => {
               controles_service.change_tool_panel_insights();
             }}
           />
-          <Button
+          <Button_Extended
             color="green"
             text="Salvar"
+            size="medium"
             icon="salvar"
             onClick={() => {}}
           />
         </>
       ) : (
         <>
-          <Button
-            color="red"
-            text="Saída"
-            icon="saida"
+          <Button_Extended
             onClick={() => {
               controles_service.change_tool_panel_form_transaction(2);
             }}
+            color="red"
+            icon="mais"
+            size="medium"
+            text="Saída"
           />
-          {/* <Button color="blue" text="Filtro" icon="filtro" /> */}
-          <Button
-            color="green"
-            text="Entrada"
-            icon="entrada"
+          <Button_Extended
             onClick={() => {
               controles_service.change_tool_panel_form_transaction(1);
             }}
+            color="green"
+            icon="mais"
+            size="medium"
+            text="Entrada"
           />
         </>
       )}

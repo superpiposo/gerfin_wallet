@@ -2,7 +2,13 @@
 
 import React from "react";
 import { BiSolidLogOutCircle } from "react-icons/bi";
-import { CiCircleCheck, CiCircleRemove, CiSearch } from "react-icons/ci";
+import {
+  CiCircleCheck,
+  CiCircleRemove,
+  CiSearch,
+  CiWallet,
+} from "react-icons/ci";
+import { FaCaretDown, FaPlus } from "react-icons/fa";
 import {
   GiMoon,
   GiPayMoney,
@@ -24,10 +30,18 @@ export default function Icon({ type, size, color }: iconProps) {
     size === "small"
       ? "w-4 h-4 m-2"
       : size === "medium"
-      ? "w-6 h-6 m-2"
+      ? "w-6 h-6 m-1"
       : "w-8 h-8 m-3"
   }
-  ${color === "white" ? "fill-stone-600" : "fill-white"}`;
+  ${
+    color === "white"
+      ? "fill-stone-600"
+      : color === "red"
+      ? "fill-red group-hover:fill-white"
+      : color === "green"
+      ? "fill-green group-hover:fill-white"
+      : "fill-white"
+  }`;
   switch (type) {
     case "entrada": {
       return <GiReceiveMoney className={className} />;
@@ -61,6 +75,15 @@ export default function Icon({ type, size, color }: iconProps) {
     }
     case "logout": {
       return <BiSolidLogOutCircle className={className} />;
+    }
+    case "carteira": {
+      return <CiWallet className={className} />;
+    }
+    case "down": {
+      return <FaCaretDown className={className} />;
+    }
+    case "mais": {
+      return <FaPlus className={className} />;
     }
   }
 }
