@@ -8,6 +8,6 @@ type action = {
 };
 
 export const Tool_Panel_Store = create<state & action>((set) => ({
-  session: "insights",
+  session: "summary",
   set_session: (session) => set({ session }),
 }));

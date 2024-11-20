@@ -37,6 +37,9 @@ export default function Navbar() {
               text="filtro"
               icon="filtro"
               color="blue"
+              onClick={() => {
+                navbar_service.change_session_to_filter();
+              }}
             />
             <Button
               title="Configuração de conta"

@@ -30,6 +30,23 @@ export default function Controles() {
             }}
           />
         </>
+      ) : session === "filter" ? (
+        <>
+          <Button
+            color="red"
+            text="Cancelar"
+            icon="cancelar"
+            onClick={() => {
+              controles_service.change_tool_panel_insights();
+            }}
+          />
+          <Button
+            color="green"
+            text="Salvar"
+            icon="salvar"
+            onClick={() => {}}
+          />
+        </>
       ) : (
         <>
           <Button
