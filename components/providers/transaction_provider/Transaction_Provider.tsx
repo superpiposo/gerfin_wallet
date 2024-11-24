@@ -12,7 +12,7 @@ export default function Transaction_Provider({
   const { get_transactions } = Transaction_Store();
 
   useEffect(() => {
-    transaction_provider_service.get_transactions();
+    transaction_provider_service.start();
   }, [get_transactions]);
 
   return <>{children}</>;

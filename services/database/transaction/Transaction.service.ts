@@ -1,6 +1,7 @@
 import { Wallet_Service } from "../wallet/Wallet.service";
 import { prismaClientSingleton } from "../db";
 import { Transaction } from "./Transaction";
+import { DateValueType } from "react-tailwindcss-datepicker";
 
 const prisma = prismaClientSingleton();
 
@@ -99,6 +100,33 @@ export class Transaction_Service {
             equals: walletId,
           },
         },
+      });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async filterByDate(
+    date: DateValueType,
+    walletId: number,
+    take: number,
+    skip: number
+  ) {
+    try {
+      if (!date?.startDate || !date.endDate) {
+        throw new Error("Invalid data!");
+      }
+      const res = await prisma.transaction.findMany({
+        where: {
+          walletId,
+          date: {
+            gte: date.startDate,
+            lte: date.endDate,
+          },
+        },
+        take,
+        skip,
       });
       return res;
     } catch (error) {

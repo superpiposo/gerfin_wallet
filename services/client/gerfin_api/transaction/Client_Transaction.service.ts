@@ -1,6 +1,7 @@
 import { CreateTransaction } from "@/services/database/transaction/Transaction";
 import { gerfin_api } from "../gerfin_api";
 import { Transaction } from "@prisma/client";
+import { DateValueType } from "react-tailwindcss-datepicker";
 
 export class Client_Transaction_Service {
   async getOne(id: number) {
@@ -17,6 +18,27 @@ export class Client_Transaction_Service {
         `/transaction?walletid=${walletId}&take=${take}&skip=${skip}`
       );
       return res.data.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async filterByDate(
+    date: DateValueType,
+    walletId: number,
+    take: number,
+    skip: number
+  ) {
+    try {
+      if (!date?.endDate || !date.startDate) {
+        throw new Error("dados inválidos!");
+      }
+      const datainicio = date.startDate.toISOString();
+      const datafim = date.endDate.toISOString();
+      const res = await gerfin_api.get(
+        `/transaction/filter/date?datainicio=${datainicio}&datafim=${datafim}&walletid=${walletId}&take=${take}&skip${skip}`
+      );
+      console.log({ datainicio, datafim, res: res });
+      return res.data;
     } catch (error) {
       throw error;
     }
