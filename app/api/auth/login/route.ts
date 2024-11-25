@@ -8,9 +8,7 @@ export async function POST(request: Request) {
       return Response.json({ status: 400, message: "Dados inválidos" });
     }
     const res = await auth_service.login(email, senha);
-    if (res.email) {
-      return Response.json({ status: 200, res });
-    }
+    return Response.json({ status: 200, data: res });
   } catch (error) {
     return Response.json({ status: 500, message: "Erro não tratado", error });
   }
