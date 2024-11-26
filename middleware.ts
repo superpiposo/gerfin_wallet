@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const allowedOrigins = [
   "https://gerfin-wallet.vercel.app/api",
-  "https://my-app.org",
+  "https://gerfin-wallet-pm9o67upa-nathans-projects-869367ce.vercel.app/",
 ];
 
 const corsOptions = {
