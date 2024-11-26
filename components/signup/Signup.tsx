@@ -8,7 +8,6 @@ import Input from "../shared/Input";
 import Button from "../shared/Button";
 import { Signup_Service } from "./Signup.service";
 import { Signup_Store } from "./Signup.store";
-import Toggle_Theme from "../shared/Toggle_Theme";
 import { useRouter } from "next/navigation";
 
 const signup_service = new Signup_Service();
@@ -18,7 +17,6 @@ export default function Signup() {
   const { name, email, password, re_password } = Signup_Store();
   return (
     <Container>
-      <Toggle_Theme />
       <Form_Container>
         <Title text="Cadastre-se" />
         <div className="flex flex-col gap-4 landscape:w-3/5 portrait:w-5/6 focus:bg-none active:bg-none">

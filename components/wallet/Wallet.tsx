@@ -44,6 +44,7 @@ export default function Wallet() {
                     <div className="w-full h-30 px-3 ">
                       <div
                         className="border border-green bg-green w-full h-full rounded-md p-3 text-white
+                        font-bold text-lg
                            justify-center items-center flex"
                       >
                         Cadastre transações abaixo para começar!
