@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-const baseURL = "https://gerfin-wallet.vercel.app/api";
+const baseURL = "http://localhost:3000/api";
 
 export const gerfin_api = axios.create({
   baseURL: baseURL,
@@ -27,6 +27,9 @@ gerfin_api.interceptors.request.use(
 
 gerfin_api.interceptors.response.use(
   function (response) {
+    if (response.status === 500) {
+      throw new Error("Erro não identificados");
+    }
     return response;
   },
   function (error) {
