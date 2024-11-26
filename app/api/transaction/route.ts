@@ -1,3 +1,4 @@
+import { AuthorizeRequest } from "@/services/database/middlewares/AuthorizeRequest";
 import { Transaction_Service } from "@/services/database/transaction/Transaction.service";
 import { NextRequest } from "next/server";
 
@@ -5,6 +6,10 @@ const transaction_service = new Transaction_Service();
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = await AuthorizeRequest(request);
+    if (auth !== true) {
+      return auth;
+    }
     const searchParams = request.nextUrl.searchParams;
     const walletid = searchParams.get("walletid");
     const skip = searchParams.get("skip");
@@ -35,8 +40,12 @@ export async function GET(request: NextRequest) {
     });
   }
 }
-export async function PATCH(request: Request) {
+export async function PATCH(request: NextRequest) {
   try {
+    const auth = await AuthorizeRequest(request);
+    if (auth !== true) {
+      return auth;
+    }
     const { transactionId, data } = await request.json();
     if (!transactionId || !data) {
       return Response.json({
@@ -54,8 +63,12 @@ export async function PATCH(request: Request) {
     });
   }
 }
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const auth = await AuthorizeRequest(request);
+    if (auth !== true) {
+      return auth;
+    }
     const { walletId, typeId, value, description, date } = await request.json();
     if (
       !walletId ||
@@ -89,6 +102,10 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const auth = await AuthorizeRequest(request);
+    if (auth !== true) {
+      return auth;
+    }
     const searchParams = request.nextUrl.searchParams;
     const id = searchParams.get("id");
     if (!id) {

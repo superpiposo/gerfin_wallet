@@ -1,3 +1,4 @@
+import { AuthorizeRequest } from "@/services/database/middlewares/AuthorizeRequest";
 import { Transaction_Service } from "@/services/database/transaction/Transaction.service";
 import { NextRequest } from "next/server";
 
@@ -5,6 +6,10 @@ const transaction_service = new Transaction_Service();
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = await AuthorizeRequest(request);
+    if (auth !== true) {
+      return auth;
+    }
     const searchParams = request.nextUrl.searchParams;
     const dataInicio = searchParams.get("datainicio");
     const dataFim = searchParams.get("datafim");

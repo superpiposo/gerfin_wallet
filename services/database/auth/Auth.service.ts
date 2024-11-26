@@ -37,7 +37,9 @@ export class Auth_Service {
   verifyToken(token: string) {
     try {
       const decoded = jwt.verify(token, hash);
-      return decoded;
+      if (decoded) {
+        return { success: true, message: "Autorizado!" };
+      }
     } catch (error) {
       if (error instanceof jwt.JsonWebTokenError) {
         return { success: false, message: "Token expirado" };
