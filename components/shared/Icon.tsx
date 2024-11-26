@@ -40,6 +40,8 @@ export default function Icon({ type, size, color }: iconProps) {
       ? "fill-red group-hover:fill-white"
       : color === "green"
       ? "fill-green group-hover:fill-white"
+      : color === "blue"
+      ? "fill-blue group-hover:fill-white"
       : "fill-white"
   }`;
   switch (type) {

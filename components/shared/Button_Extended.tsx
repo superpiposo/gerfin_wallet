@@ -19,11 +19,13 @@ export default function Button_Extended({
 }: buttonProps) {
   const btn_className = `
         border  hover:border-none group
-        flex flex-row gap-2 justify-center items-center px-3 py-1 rounded-md outline-none
+        flex flex-row gap-1 justify-center items-center px-3 py-1 rounded-md outline-none
         transition-all group
         ${
           color === "red"
             ? "border-red hover:bg-red"
+            : color === "blue"
+            ? "border-blue hover:bg-blue"
             : "border-green hover:bg-green"
         }
         
@@ -32,6 +34,8 @@ export default function Button_Extended({
   ${
     color === "red"
       ? "text-red font-bold group-hover:text-white"
+      : color === "blue"
+      ? "text-blue font-bold group-hover:text-white"
       : "text-green group-hover:text-white font-bold"
   }
         
