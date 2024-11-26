@@ -19,7 +19,8 @@ export class Login_Service {
         credentials.email,
         credentials.password
       );
-      set_user(res.data.res);
+      set_user(res.data.data.user);
+      sessionStorage.setItem("accessToken", res.data.data.token);
       toast.success("Usuario válido!");
       set_get_wallet(true);
       return true;

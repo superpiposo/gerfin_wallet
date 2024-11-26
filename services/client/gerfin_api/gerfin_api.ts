@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 const baseURL = "http://localhost:3000/api";
 
@@ -9,7 +10,15 @@ export const gerfin_api = axios.create({
 
 gerfin_api.interceptors.request.use(
   function (config) {
-    return config;
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      toast.warning("Sem sessão iniciada!");
+      window.location.replace("/signin");
+      throw new Error("Sem sessão iniciada!");
+    } else {
+      config.headers.Authorization = `bearer ${token}`;
+      return config;
+    }
   },
   function (error) {
     return Promise.reject(error);
@@ -24,3 +33,8 @@ gerfin_api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export const public_gerfin_api = axios.create({
+  baseURL: baseURL,
+  timeout: 1000,
+});
