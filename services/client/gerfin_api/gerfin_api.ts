@@ -5,7 +5,7 @@ const baseURL = "https://gerfin-wallet.vercel.app/api";
 
 export const gerfin_api = axios.create({
   baseURL: baseURL,
-  timeout: 1000,
+  timeout: 5000,
 });
 
 gerfin_api.interceptors.request.use(
@@ -36,5 +36,5 @@ gerfin_api.interceptors.response.use(
 
 export const public_gerfin_api = axios.create({
   baseURL: baseURL,
-  timeout: 1000,
+  timeout: 5000,
 });
