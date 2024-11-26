@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "sonner";
 
-const baseURL = "http://localhost:3000/api";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const gerfin_api = axios.create({
   baseURL: baseURL,

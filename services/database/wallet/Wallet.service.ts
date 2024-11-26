@@ -4,12 +4,15 @@ import { Transaction } from "@prisma/client";
 
 const prisma = prismaClientSingleton();
 
+const income = process.env.INCOME;
+const outcome = process.env.OUTCOME;
+
 export class Wallet_Service {
   private income_score: number;
   private outcome_score: number;
   constructor() {
-    this.income_score = 0.05;
-    this.outcome_score = 0.065;
+    this.income_score = Number(income);
+    this.outcome_score = Number(outcome);
   }
   async getOne(id: number) {
     try {

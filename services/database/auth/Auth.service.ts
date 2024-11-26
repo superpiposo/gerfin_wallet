@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import { User_Service } from "../user/User.service";
 import jwt from "jsonwebtoken";
 
-const hash = "eyJzdWIiOiJFUzI1NmluT1RBIiwibmFtZSI6IkpvaG4gRG9lIn0";
+const hash = process.env.HASH;
 
 const user_service = new User_Service();
 export class Auth_Service {
@@ -23,6 +23,9 @@ export class Auth_Service {
   }
   signToken(user: User) {
     try {
+      if (!hash) {
+        throw new Error("Erro com a hash da aplicação");
+      }
       const token = jwt.sign({ nome: user.nome, email: user.email }, hash, {
         algorithm: "HS256",
         expiresIn: "1h",
@@ -36,6 +39,9 @@ export class Auth_Service {
 
   verifyToken(token: string) {
     try {
+      if (!hash) {
+        throw new Error("Erro com a hash da aplicação");
+      }
       const decoded = jwt.verify(token, hash);
       if (decoded) {
         return { success: true, message: "Autorizado!" };
