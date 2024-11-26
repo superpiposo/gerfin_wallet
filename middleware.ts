@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedOrigins = ["https://acme.com", "https://my-app.org"];
+const allowedOrigins = [
+  "https://gerfin-wallet.vercel.app/api",
+  "https://my-app.org",
+];
 
 const corsOptions = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
