@@ -7,7 +7,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: "Access-Control-Allow-Origin",
-                        value: "https://gerfin-wallet-e41q54u6y-nathans-projects-869367ce.vercel.app/",
+                        value: "*",
                     },
                     {
                         key: "Access-Control-Allow-Methods",
