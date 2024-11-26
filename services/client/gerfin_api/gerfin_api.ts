@@ -17,12 +17,6 @@ gerfin_api.interceptors.request.use(
       throw new Error("Sem sessão iniciada!");
     } else {
       config.headers.Authorization = `bearer ${token}`;
-      config.headers["Access-Control-Allow-Credentials"] = true;
-      config.headers["Access-Control-Allow-Origin"] = "*";
-      config.headers["Access-Control-Allow-Headers"] =
-        "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version";
-      config.headers["Access-Control-Allow-Methods"] =
-        "GET,OPTIONS,PATCH,DELETE,POST,PUT";
       return config;
     }
   },
